@@ -6,7 +6,7 @@ my $_fh;
  
 sub init {
     my $self = shift;
-    $_fh = FileHandle->new("/var/tmp/logger.log","a+");
+    $_fh = FileHandle->new($self->{config}->{'OmniLogger::File'}->{filename},"a+");
 }
  
 sub log {

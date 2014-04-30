@@ -1,8 +1,10 @@
 package OmniLogger;
 use Symbol;
+use Config::Tiny;
  
 sub import {
   my $self = shift;
+  $self->load_config;
   foreach (@_) {
     if ($_ eq 'stdout') {
       *STDOUT = $self->new;
@@ -27,6 +29,8 @@ sub PRINT { shift->log(shift)}
 sub init { return; }
  
 sub log { return; }
+
+sub load_config { shift->{config} = Config::Tiny->read('OmniLogger/omnilogger.conf'); }
  
 sub DESTROY { return; }
  
